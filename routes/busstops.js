@@ -7,7 +7,7 @@ var busstops=[];
 router.get('/',function(req, res){
 	var db=req.db;
 	var collection=db.collection('busstops');
-	collection.find({},{},function(e,docs){
+	collection.find({}).toArray(function(e,docs){
 		res.json(docs);
 	});
 });
@@ -16,7 +16,7 @@ router.get('/suggests/:query',function(req,res){
 	var db=req.db;
 	var query = req.params.query;
 	console.log(query);
-	var collection=db.collection('busstops');
+	var collection=req.db.collection('busstops');
 	collection.find({name:{'$regex':'^'+query}},{},function(e,docs){
 		res.json(docs);
 	});
@@ -24,7 +24,7 @@ router.get('/suggests/:query',function(req,res){
 
 router.post('/add',function(req,res){
 	var db=req.db;
-	var collection=db.collection('busstops');
+	var collection=req.db.collection('busstops');
 	collection.insert(req.body, function(err,doc){
 		if(err){
 			res.json({msg:"There was a problem in adding the information to the database"}, 400);
