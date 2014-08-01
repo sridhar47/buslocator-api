@@ -87,4 +87,12 @@ router.get('/location', function(req, res){
 	});
 });
 
+
+
+router.get('/:id/edit', function(req, res){
+	res.json({bus:req.userId});
+});
+
+
+
 module.exports = router;
