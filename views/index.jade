@@ -1,0 +1,10 @@
+extends layout
+
+block content
+	h1= title
+	p Welcome to #{title}
+	label Boarding from
+		input(type="text")
+		label Search
+		input(type="text")
+	div(style="width:800px;height:400px")#map-canvas

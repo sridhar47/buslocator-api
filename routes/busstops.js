@@ -1,0 +1,38 @@
+var express= require('express');
+var fs=require('fs');
+var router=express.Router();
+var busstops=[];
+// var counter=0;
+
+router.get('/',function(req, res){
+	var db=req.db;
+	var collection=db.collection('busstops');
+	collection.find({},{},function(e,docs){
+		res.json(docs);
+	});
+});
+
+router.get('/suggests/:query',function(req,res){
+	var db=req.db;
+	var query = req.params.query;
+	console.log(query);
+	var collection=db.collection('busstops');
+	collection.find({name:{'$regex':'^'+query}},{},function(e,docs){
+		res.json(docs);
+	});
+});
+
+router.post('/add',function(req,res){
+	var db=req.db;
+	var collection=db.collection('busstops');
+	collection.insert(req.body, function(err,doc){
+		if(err){
+			res.json({msg:"There was a problem in adding the information to the database"}, 400);
+		}
+		else{
+			res.json(doc);
+		}
+	});
+});
+
+module.exports= router;

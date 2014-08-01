@@ -1,0 +1,10 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='http://maps.googleapis.com/maps/api/js?sensor=false')
+    script(src='https://www.google.com.au/maps/preview/@<latitude>,<longitude>,<zoom level>z')
+    script(src='/javascripts/maps.js')
+  body
+    block content
