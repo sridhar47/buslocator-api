@@ -17,7 +17,7 @@ router.get('/suggests/:query', function(req, res) {
 	var db = req.db;
 	var query=req.params.query;
 	var collection = db.collection('buses');
-	collection.find({bus_no:{'$regex':'^'+query}},{},function(e,docs){
+	collection.find({bus_no:{'$regex':'^'+query}}).toArray(function(e,docs){
 		res.json(docs);
 	});
 });
@@ -88,9 +88,8 @@ router.get('/location', function(req, res){
 });
 
 
-
 router.get('/:id/edit', function(req, res){
-	res.json({bus:req.userId});
+	res.json({bus:req.busID});
 });
 
 

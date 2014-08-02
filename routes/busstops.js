@@ -7,6 +7,7 @@ var busstops=[];
 router.get('/',function(req, res){
 	var db=req.db;
 	var collection=db.collection('busstops');
+	// console.log(collection);
 	collection.find({}).toArray(function(e,docs){
 		res.json(docs);
 	});
@@ -16,8 +17,9 @@ router.get('/suggests/:query',function(req,res){
 	var db=req.db;
 	var query = req.params.query;
 	console.log(query);
-	var collection=req.db.collection('busstops');
-	collection.find({name:{'$regex':'^'+query}},{},function(e,docs){
+	var collection=db.collection('busstops');
+	// console.log(collection);
+	collection.find({name:{'$regex':'^'+query}}).toArray(function(e,docs){
 		res.json(docs);
 	});
 });
