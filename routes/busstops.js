@@ -13,7 +13,7 @@ router.get('/',function(req, res){
 	});
 });
 
-router.get('/suggests/:query',function(req,res){
+router.get('/suggest/:query',function(req,res){
 	var db=req.db;
 	var query = req.params.query;
 	console.log(query);
