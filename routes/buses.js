@@ -15,8 +15,7 @@ router.get('/', function(req, res) {
 
 router.get('/suggest', function(req, res) {
 	var db = req.db;
-	console.log(req.params.query);
-	var query=req.params.query;
+	var query=req.param('query');
 	var collection = db.collection('buses');
 	collection.find({bus_no:{'$regex':'^'+query}}).toArray(function(e,docs){
 		res.json(docs);
