@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
 	});
 });
 
-router.get('/suggest/:query', function(req, res) {
+router.get('/suggest', function(req, res) {
 	var db = req.db;
 	var query=req.params.query;
 	var collection = db.collection('buses');
