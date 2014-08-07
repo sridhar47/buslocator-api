@@ -17,8 +17,7 @@ router.get('/suggest',function(req,res){
 	var db = req.db;
 	var query=req.param('query');
 	var collection=db.collection('busstops');
-	// console.log(collection);
-	collection.find({name:{'$regex':'^'+query}}).toArray(function(e,docs){
+	collection.find({name:new RegExp('^'+query,'i')}).toArray(function(e,docs){
 		res.json(docs);
 	});
 });
