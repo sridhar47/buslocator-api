@@ -16,7 +16,6 @@
     "mongodb": "*",
     "mongoskin": "*",
     "node_spreadsheet":"*",
-    "optimist": "0.3.4",
     "nodemon": "*",
     "mongoose": "*",
     "connect-busboy": "*",
